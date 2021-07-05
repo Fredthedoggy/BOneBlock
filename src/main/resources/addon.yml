@@ -1,12 +1,12 @@
-name: AOneBlock
+name: BOneBlock
 main: world.bentobox.aoneblock.AOneBlock
 version: ${version}${build.number}
 api-version: 1.17
 metrics: true
-icon: "STONE"
-repository: "BentoBoxWorld/AOneBlock"
+icon: "GRASS_BLOCK"
+repository: "Fredthedoggy/BOneBlock"
 
-authors: tastybento
+authors: tastybento, Fredthedoggy
 
 permissions:
   aoneblock.count:
