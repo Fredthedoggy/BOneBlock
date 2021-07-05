@@ -64,6 +64,7 @@ public class OneBlockObject {
 
     }
 
+
     /**
      * A chest
      * @param chest - list of itemstacks in the chest
