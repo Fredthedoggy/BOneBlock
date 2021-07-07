@@ -46,6 +46,7 @@ public class OneBlocksManager {
     private static final String BLOCKS = "blocks";
     private static final String PHASES = "phases";
     private static final String GOTO_BLOCK = "gotoBlock";
+    private static final String CONTINUE_BLOCK = "continueBlock";
     private static final String START_COMMANDS = "start-commands";
     private static final String END_COMMANDS = "end-commands";
     private static final String REQUIREMENTS = "requirements";
@@ -129,6 +130,11 @@ public class OneBlocksManager {
             // goto
             if (phase.contains(GOTO_BLOCK)) {
                 obPhase.setGotoBlock(phase.getInt(GOTO_BLOCK, 0));
+                continue;
+            }
+            if (phase.contains(CONTINUE_BLOCK)) {
+                obPhase.setContinueBlock(phase.getInt(CONTINUE_BLOCK, 0));
+                AOneBlock.getInstance().setContinueAmount(blockNum);
                 continue;
             }
             initBlock(blockNumber, obPhase, phase);
@@ -414,6 +420,8 @@ public class OneBlocksManager {
             // Check for a goto block
             if (p.isGotoPhase()) {
                 phSec.set(GOTO_BLOCK, p.getGotoBlock());
+            } else if (p.isContinuePhase()) {
+                phSec.set(CONTINUE_BLOCK, p.getContinueBlock());
             } else {
                 phSec.set(NAME, p.getPhaseName());
                 if (p.getFirstBlock() != null) {
@@ -434,7 +442,7 @@ public class OneBlocksManager {
                 addon.logError("Could not save phase " + p.getPhaseName() + " " + e.getMessage());
             }
             // No chests in goto phases
-            if (p.isGotoPhase()) {
+            if (p.isGotoPhase() || p.isContinuePhase()) {
                 return;
             }
             // Save chests separately
@@ -458,6 +466,9 @@ public class OneBlocksManager {
     private String getPhaseFileName(OneBlockPhase p) {
         if (p.isGotoPhase()) {
             return p.getBlockNumber() + "_goto_" + p.getGotoBlock();
+        }
+        if (p.isContinuePhase()) {
+            return p.getBlockNumber() + "_continue_" + p.getContinueBlock();
         }
         return p.getBlockNumber() + "_" + (p.getPhaseName() == null ? "" : p.getPhaseName().toLowerCase());
     }

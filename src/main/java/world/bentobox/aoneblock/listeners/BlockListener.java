@@ -268,6 +268,16 @@ public class BlockListener implements Listener {
             is.setBlockNumber(gotoBlock);
 
         }
+        if (phase.getContinueBlock() != null) {
+            int continueBlock = phase.getContinueBlock();
+            phase = oneBlocksManager.getPhase(continueBlock);
+            // Store lifetime
+            is.setLifetime(is.getLifetime() + is.getBlockNumber());
+            // Set current block
+            is.setBlockNumber(continueBlock);
+            // Add 1 Cycle
+            is.incrementCyclesCompleted();
+        }
         // Check for new phase and run commands if required
         boolean newPhase = checkPhase(player, i, is, phase);
         if (!newPhase && is.getBlockNumber() % SAVE_EVERY == 0) {

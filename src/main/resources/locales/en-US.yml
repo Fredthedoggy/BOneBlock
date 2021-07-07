@@ -31,7 +31,8 @@ aoneblock:
       description: show a list of all the phases
       title: "&2 OneBlock Phases"
       name-syntax: "&a [name]"
-      description-syntax: "&b [number] blocks"
+      description-syntax: "&b [number] Blocks"
+      description-owns-island: "&7Next At &b[next]"
   phase:
     insufficient-level: "&c Your island level is too low to proceed! It must be [number]."
     insufficient-funds: "&c Your funds are too low to proceed! They must be [number]."

@@ -38,11 +38,13 @@ public class AOneBlock extends GameModeAddon {
 
     // Settings
     private Settings settings;
+    private int continueAmount = 0;
     private ChunkGeneratorWorld chunkGenerator;
     private final Config<Settings> configObject = new Config<>(this, Settings.class);
     private BlockListener blockListener;
     private OneBlocksManager oneBlockManager;
     private PlaceholdersManager phManager;
+    private static AOneBlock instance; // TEMP
 
     @Override
     public void onLoad() {
@@ -55,6 +57,8 @@ public class AOneBlock extends GameModeAddon {
         // Register commands
         playerCommand = new PlayerCommand(this);
         adminCommand = new AdminCommand(this);
+        // TEMP - Set Instance
+        instance = this;
     }
 
     private boolean loadSettings() {
@@ -248,6 +252,20 @@ public class AOneBlock extends GameModeAddon {
     }
 
     /**
+     * @return continueAmount amount 1 continue is worth
+     */
+    public int continueAmount() {
+        return continueAmount;
+    }
+
+    /**
+     * @param continueAmount amount 1 continue is worth
+     */
+    public void setContinueAmount(int continueAmount) {
+        this.continueAmount = continueAmount;
+    }
+
+    /**
      * Get the placeholder manager
      * @return the phManager
      */
@@ -255,5 +273,8 @@ public class AOneBlock extends GameModeAddon {
         return phManager;
     }
 
+    public static AOneBlock getInstance() {
+        return instance;
+    }
 
 }

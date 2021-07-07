@@ -25,6 +25,8 @@ public class OneBlockIslands implements DataObject {
     @Expose
     private int blockNumber;
     @Expose
+    private int cyclesCompleted;
+    @Expose
     private long lifetime;
     @Expose
     private String phaseName = "";
@@ -58,6 +60,13 @@ public class OneBlockIslands implements DataObject {
     }
 
     /**
+     * @return the cyclesCompleted
+     */
+    public int getCyclesCompleted() {
+        return cyclesCompleted;
+    }
+
+    /**
      * @param blockNumber the blockNumber to set
      */
     public void setBlockNumber(int blockNumber) {
@@ -65,10 +74,24 @@ public class OneBlockIslands implements DataObject {
     }
 
     /**
+     * @param cyclesCompleted the cyclesCompleted to set
+     */
+    public void setCyclesCompleted(int cyclesCompleted) {
+        this.cyclesCompleted = cyclesCompleted;
+    }
+
+    /**
      * Increments the block number
      */
     public void incrementBlockNumber() {
         this.blockNumber++;
+    }
+
+    /**
+     * Increments the cycles completed
+     */
+    public void incrementCyclesCompleted() {
+        this.cyclesCompleted++;
     }
 
     /* (non-Javadoc)

@@ -44,7 +44,7 @@ public class IslandCountCommand extends CompositeCommand {
     public boolean execute(User user, String label, List<String> args) {
         getIslands().getProtectedIslandAt(Objects.requireNonNull(user.getLocation())).ifPresent(island -> {
             OneBlockIslands i = addon.getOneBlocksIsland(island);
-            user.sendMessage("aoneblock.commands.count.info", TextVariables.NUMBER, String.valueOf(i.getBlockNumber()), TextVariables.NAME, i.getPhaseName());
+            user.sendMessage("aoneblock.commands.count.info", TextVariables.NUMBER, String.valueOf(i.getBlockNumber() + (AOneBlock.getInstance().continueAmount() * i.getCyclesCompleted())), TextVariables.NAME, i.getPhaseName());
         });
         return true;
     }

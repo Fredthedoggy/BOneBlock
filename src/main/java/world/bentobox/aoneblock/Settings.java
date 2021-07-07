@@ -28,7 +28,7 @@ import world.bentobox.bentobox.database.objects.adapters.FlagSerializer2;
  * All the plugin settings are here
  * @author Tastybento
  */
-@StoreAt(filename="config.yml", path="addons/AOneBlock") // Explicitly call out what name this should have.
+@StoreAt(filename="config.yml", path="addons/BOneBlock") // Explicitly call out what name this should have.
 @ConfigComment("AOneBlock Configuration [version]")
 public class Settings implements WorldSettings {
 

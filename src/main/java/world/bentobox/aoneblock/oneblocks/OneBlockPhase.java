@@ -49,6 +49,7 @@ public class OneBlockPhase {
     private final Random random = new Random();
     private final String blockNumber;
     private Integer gotoBlock;
+    private Integer continueBlock;
     private int blockTotal = 0;
     private int entityTotal = 0;
     private List<String> startCommands;
@@ -291,10 +292,24 @@ public class OneBlockPhase {
     }
 
     /**
+     * @return the continueBlock
+     */
+    public Integer getContinueBlock() {
+        return continueBlock;
+    }
+
+    /**
      * @param gotoBlock the gotoBlock to set
      */
     public void setGotoBlock(Integer gotoBlock) {
         this.gotoBlock = gotoBlock;
+    }
+
+    /**
+     * @param continueBlock the continueBlock to set
+     */
+    public void setContinueBlock(Integer continueBlock) {
+        this.continueBlock = continueBlock;
     }
 
     /**
@@ -323,6 +338,13 @@ public class OneBlockPhase {
      */
     public boolean isGotoPhase() {
         return gotoBlock != null;
+    }
+
+    /**
+     * @return true if phase is a continue phase
+     */
+    public boolean isContinuePhase() {
+        return continueBlock != null;
     }
 
     /**

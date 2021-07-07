@@ -61,7 +61,10 @@ public class AdminSetCountCommand extends CompositeCommand {
     @Override
     public boolean execute(User user, String label, List<String> args) {
         OneBlockIslands i = addon.getOneBlocksIsland(island);
-        i.setBlockNumber(count);
+        Integer singleCount = count%AOneBlock.getInstance().continueAmount();
+        Integer cycles = count/AOneBlock.getInstance().continueAmount();
+        i.setBlockNumber(singleCount);
+        i.setCyclesCompleted(cycles);
         i.clearQueue();
         user.sendMessage("aoneblock.commands.admin.setcount.set", TextVariables.NUMBER, String.valueOf(i.getBlockNumber()), TextVariables.NAME, getPlayers().getName(targetUUID));
         return true;

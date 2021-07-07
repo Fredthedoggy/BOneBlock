@@ -1,11 +1,11 @@
 package world.bentobox.aoneblock;
 
-import java.util.Objects;
-import java.util.TreeMap;
-
 import world.bentobox.aoneblock.dataobjects.OneBlockIslands;
 import world.bentobox.bentobox.api.user.User;
 import world.bentobox.bentobox.database.objects.Island;
+
+import java.util.Objects;
+import java.util.TreeMap;
 
 public class PlaceholdersManager {
 
@@ -50,11 +50,8 @@ public class PlaceholdersManager {
      */
     public String getCountByLocation(User user) {
         if (user == null || user.getUniqueId() == null) return "";
-        return addon.getIslands().getProtectedIslandAt(Objects.requireNonNull(user.getLocation()))
-                .map(addon::getOneBlocksIsland)
-                .map(OneBlockIslands::getBlockNumber)
-                .map(String::valueOf)
-                .orElse("");
+        Island i = addon.getIslands().getProtectedIslandAt(Objects.requireNonNull(user.getLocation())).orElse(null);
+        return i == null ? "" : String.valueOf(addon.getOneBlocksIsland(i).getBlockNumber() + (AOneBlock.getInstance().continueAmount() * addon.getOneBlocksIsland(i).getCyclesCompleted()));
     }
 
     /**
@@ -76,7 +73,7 @@ public class PlaceholdersManager {
     public String getCount(User user) {
         if (user == null || user.getUniqueId() == null) return "";
         Island i = addon.getIslands().getIsland(addon.getOverWorld(), user);
-        return i == null ? "" : String.valueOf(addon.getOneBlocksIsland(i).getBlockNumber());
+        return i == null ? "" : String.valueOf(addon.getOneBlocksIsland(i).getBlockNumber() + (AOneBlock.getInstance().continueAmount() * addon.getOneBlocksIsland(i).getCyclesCompleted()));
     }
 
     /**
