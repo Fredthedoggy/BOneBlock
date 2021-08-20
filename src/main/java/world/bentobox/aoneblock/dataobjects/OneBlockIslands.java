@@ -30,6 +30,8 @@ public class OneBlockIslands implements DataObject {
     private long lifetime;
     @Expose
     private String phaseName = "";
+    @Expose
+    private String hologram = "";
 
     private List<OneBlockObject> queue = new ArrayList<>();
 
@@ -92,6 +94,20 @@ public class OneBlockIslands implements DataObject {
      */
     public void incrementCyclesCompleted() {
         this.cyclesCompleted++;
+    }
+
+    /**
+     * @return the hologram Line
+     */
+    public String getHologram() {
+        return hologram;
+    }
+
+    /**
+     * @param hologramLine Hologram line
+     */
+    public void setHologram(String hologramLine) {
+        this.hologram = hologramLine;
     }
 
     /* (non-Javadoc)

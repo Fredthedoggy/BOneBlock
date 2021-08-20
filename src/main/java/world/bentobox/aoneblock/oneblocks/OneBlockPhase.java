@@ -56,6 +56,7 @@ public class OneBlockPhase {
     private List<String> endCommands;
     private List<Requirement> requirements;
     private Map<Integer, OneBlockObject> fixedBlocks;
+    private Map<Integer, String> holograms;
 
     /**
      * Construct a phase that starts at blockNumber. Phase continues forever until
@@ -69,6 +70,7 @@ public class OneBlockPhase {
         endCommands = new ArrayList<>();
         requirements = new ArrayList<>();
         fixedBlocks = new HashMap<>();
+        holograms = new HashMap<>();
     }
 
     /**
@@ -85,6 +87,21 @@ public class OneBlockPhase {
      */
     public int getBlockNumberValue() {
         return Integer.parseInt(blockNumber);
+    }
+
+    /**
+     * @return the hologramLine
+     */
+    @Nullable
+    public String getHologramLine(Integer block) {
+        return holograms.getOrDefault(block, null);
+    }
+
+    /**
+     * @return the hologramLines
+     */
+    public Map<Integer, String> getHologramLines() {
+        return holograms;
     }
 
     /**
@@ -403,4 +420,10 @@ public class OneBlockPhase {
         this.fixedBlocks = fixedBlocks;
     }
 
+    /**
+     * @param hologramLines the hologramLines to set
+     */
+    public void setHologramLines(Map<Integer, String> hologramLines) {
+        this.holograms = hologramLines;
+    }
 }
